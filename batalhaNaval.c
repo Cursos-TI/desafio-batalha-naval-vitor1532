@@ -11,6 +11,18 @@ int main() {
     // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
     char linha[10] = {'A','B','C','D','E','F','G','H','I','J'}; // Representação das linhas do tabuleiro
     int tabuleiro[10][10] = {0}; // Inicializa o tabuleiro 10x10 com zeros
+    int navio1[3][2] = {{3, 7}, {4, 7}, {5, 7}}; // Navio vertical (3 partes)
+    int navio2[3][2] = {{1, 2}, {1, 3}, {1, 4}}; // Navio horizontal (3 partes)
+
+    for (int i = 0; i < 3; i++) {
+        int x = navio1[i][0];
+        int y = navio1[i][1];
+        tabuleiro[x][y] = 3; // Marca a posição do navio no tabuleiro
+
+        int x2 = navio2[i][0];
+        int y2 = navio2[i][1];
+        tabuleiro[x2][y2] = 3; // Marca a posição do navio no tabuleiro
+    }
 
     printf("Tabuleiro Inicial:\n \n");
     printf("    "); // Espaço para alinhar com os números das linhas
@@ -20,6 +32,7 @@ int main() {
     printf("\n");
     for(int i = 0; i < 10; i++) {
         printf("%2d |", i);
+        
         for(int j = 0; j < 10; j++) {
             printf("%3d", tabuleiro[i][j]);
         }
