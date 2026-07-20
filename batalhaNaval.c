@@ -4,6 +4,31 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
 
+int posicionarNavio(int tabuleiro[10][10], int navio[3][2]) {
+    // Primeiro verifica se todas as posições estão livres
+    for (int i = 0; i < 3; i++) {
+        int x = navio[i][0];
+        int y = navio[i][1];
+
+        if (x < 0 || x >= 10 || y < 0 || y >= 10) {
+            return 0; // falhou, posição fora do tabuleiro
+        }
+
+        if (tabuleiro[x][y] != 0) {
+            return 0; // falhou
+        }
+    }
+
+    // Se estiver tudo livre, posiciona o navio
+    for (int i = 0; i < 3; i++) {
+        int x = navio[i][0];
+        int y = navio[i][1];
+        tabuleiro[x][y] = 3;
+    }
+
+    return 1; // sucesso
+}
+
 int main() {
     // Nível Novato - Posicionamento dos Navios
     // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
@@ -13,16 +38,20 @@ int main() {
     int tabuleiro[10][10] = {0}; // Inicializa o tabuleiro 10x10 com zeros
     int navio1[3][2] = {{3, 7}, {4, 7}, {5, 7}}; // Navio vertical (3 partes)
     int navio2[3][2] = {{1, 2}, {1, 3}, {1, 4}}; // Navio horizontal (3 partes)
+    int navio3[3][2] = {{6, 1}, {7, 2}, {8, 3}}; // Navio diagonal (3 partes)
+    int navio4[3][2] = {{0, 9}, {1, 8}, {2, 7}}; // Outro navio diagonal (3 partes)
 
-    for (int i = 0; i < 3; i++) {
-        int x = navio1[i][0];
-        int y = navio1[i][1];
-        tabuleiro[x][y] = 3; // Marca a posição do navio no tabuleiro
+    if (!posicionarNavio(tabuleiro, navio1))
+        printf("Erro ao posicionar o navio 1!\n");
 
-        int x2 = navio2[i][0];
-        int y2 = navio2[i][1];
-        tabuleiro[x2][y2] = 3; // Marca a posição do navio no tabuleiro
-    }
+    if (!posicionarNavio(tabuleiro, navio2))
+        printf("Erro ao posicionar o navio 2!\n");
+
+    if (!posicionarNavio(tabuleiro, navio3))
+        printf("Erro ao posicionar o navio 3!\n");
+
+    if (!posicionarNavio(tabuleiro, navio4))
+        printf("Erro ao posicionar o navio 4!\n");
 
     printf("Tabuleiro Inicial:\n \n");
     printf("    "); // Espaço para alinhar com os números das linhas
